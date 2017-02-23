@@ -20,7 +20,7 @@ limitations under the License.
 <mdl:TabBarPanel xmlns:fx="http://ns.adobe.com/mxml/2009"
                  xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
-                 xmlns:sprite="library://ns.apache.org/flexjs/sprite"
+                 xmlns:s="library://ns.apache.org/flexjs/sprite"
                  initComplete="initBitmap(event)">
     
     <fx:Script>
@@ -42,7 +42,7 @@ limitations under the License.
 
     <mdl:Grid width="100">
         <mdl:Button text="COLORED" raised="true" colored="true"/>
-        <sprite:WebGLRenderer id="webGLRenderer"/>
+        <s:WebGLRenderer id="webGLRenderer" width="400" height="400"/>
     </mdl:Grid>
 
 </mdl:TabBarPanel>
