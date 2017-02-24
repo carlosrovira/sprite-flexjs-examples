@@ -21,29 +21,48 @@ limitations under the License.
                  xmlns:js="library://ns.apache.org/flexjs/basic"
                  xmlns:mdl="library://ns.apache.org/flexjs/mdl"
                  xmlns:s="library://ns.apache.org/flexjs/sprite"
-                 initComplete="initBitmap(event)">
+                 initComplete="initExample()">
     
     <fx:Script>
         <![CDATA[
             import flash.display.Sprite;
+            import org.apache.flex.core.IChild;
+            import flash.events.Event;
+            import flash.events.MouseEvent;
 
-            private function initBitmap(event:Event):void
+            private var s:Sprite;
+            private var main:SpriteFlexjsMain;
+
+            private function initExample():void
             {
-                var s:Sprite = new Sprite;
-			    //s.graphics.lineStyle(0, 0xff00);
-                
-                s.graphics.lineStyle(5);
-                s.graphics.beginFill(0xff0000);
-                s.graphics.moveTo(200, 0);
-                s.graphics.curveTo(300, 0, 300, 100);
-                webGLRenderer.addChild(s);
+                trace("");
+                main = new SpriteFlexjsMain();
+                s = new Sprite();
+                main.addChild(s);
+
+                s.graphics.beginFill(0xff);
+                s.graphics.lineStyle(10,0xff0000)
+                s.graphics.drawRect(-50,-50,100,100);
+
+                main.addEventListener(flash.events.Event.ENTER_FRAME, update);
+                s.addEventListener(flash.events.MouseEvent.CLICK,click);
+            }
+
+            private function update(e):void
+            {
+                s.x=main.stage.stageWidth/2;
+                s.y=main.stage.stageHeight/2;
+                s.rotation++;
+            }
+            private function click(e):void
+            {
+                s.scaleX*=1.1; 
             }
         ]]>
 	</fx:Script>
 
     <mdl:Grid width="100">
         <mdl:Button text="COLORED" raised="true" colored="true"/>
-        <s:WebGLRenderer id="webGLRenderer" width="400" height="400"/>
     </mdl:Grid>
 
 </mdl:TabBarPanel>
